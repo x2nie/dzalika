@@ -1166,9 +1166,18 @@ function showPageText(page) {
         if (aya == 1) {
             text += '<div class="suraHeaderFrame"><div class="suraHeaderText">' + ((getCurrDir() == 'rtl') ? 'سورة ' + Quran.getSuraName(sura) : Quran.getSuraName(sura, 'tname')) + '</div></div>';
             if (sura != 1 && sura != 9) {
-                ayaText = ayaText.replace(/^(([^ ]+ ){4})/, '$1|').split('|');
-                text += '<div class="ayaText besm">' + (currTab == 'trans' ? 'بسم الله الرحمن الرحيم' : TextTools.fixText(ayaText[0], args)) + '</div>\n';
-                ayaText = ayaText[1];
+                var besm=mushaf.lines[0]
+                ayaFirst = ayaText.replace(/^(([^ ]+ ){4})/, '$1|').split('|');
+                // if(ayaFirst.length==1){
+                if(ayaFirst[0] != besm){
+                        // besm=mushaf.lines[0]
+                }
+                else{
+                    // besm = ayaFirst[0]
+                    ayaText = ayaFirst[1];
+                }
+                console.log('AyaOne=',ayaFirst,'count=', ayaFirst.length)
+                text += '<div class="ayaText besm">' + (currTab == 'trans' ? 'بسم الله الرحمن الرحيم' : TextTools.fixText(besm, args)) + '</div>\n';
             }
         }
         if (curr.sura == sura && curr.aya == aya) {
@@ -2060,7 +2069,7 @@ var TextTools = {
     },
     fixText: function(text, args) {
         // console.log('fixText=', text)
-        if(curr.quran=='tajweed'){
+        if(text && curr.quran=='tajweed'){
             
             return text
                     .replace(/\[h/g, '<span class="ham_wasl" title="Hamzat Wasl" alt="')
