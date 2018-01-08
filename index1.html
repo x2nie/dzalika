@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Browse, Search, and Listen to the Holy Quran. With accurate Quran text and Quran translations in various languages." />
+<meta name="keywords" content="Quran Translation Authentic Accurate Qur'an Text Kuran Roots Koran Recitation Tartil Tarteel Learn Quraan Online Application Download
+تنزيل القرآن الكريم قرائت قرآن ترتيل Keywords" />
+<meta name="viewport" content="width=768" />
+<!-- <link href="http://tanzil.info/tanzil/img/favicon.png" rel="icon" type="image/png" /> -->
+<title>Tanzil - Quran Navigator | القرآن الكريم</title>
+<!-- <link href="/tanzil/css/tanzil(v1.5).css" type="text/css" rel="stylesheet" /> -->
+<script src="static/js/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+<p/>
+<h6></h6>
+<div></div>
+<script type="text/javascript">
+var tran_url = "trans/id.indonesian.txt";
+var mushaf_url = "mushaf/quran-simple.txt";
+
+$(function() {
+    $( "p" ).text( "The DOM is now loaded and can be manipulated." );
+	$.ajax({url: tran_url, 
+		//cache: true,
+		success: function(data) {
+			var items = data.split('\n');
+			$("div").text(items[1])
+			}
+  });
+	$.get(mushaf_url, function(data) {
+		var mitems = data.split('\n');
+		$("h6").text(mitems[1])
+	});
+});
+</script>
+
+</body>
+</html>
